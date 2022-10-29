@@ -327,6 +327,7 @@ $(".nav-tab-menu li a").click(function (e) {
     listBy = $(this).data('list');
 
     if (listBy == "contact") {
+        document.getElementById("search-container").innerHTML  = "";
         $(".loading-container").fadeIn(100)
         document.getElementById("refreshRes").innerHTML = `<section class="foods d-flex justify-content-around my-5 mx-5 py-5">
         <section class="contact container">
@@ -416,6 +417,7 @@ $(".nav-tab-menu li a").click(function (e) {
     }
 
     if (listBy == "search") {
+        document.getElementById("refreshRes").innerHTML = "";
         document.getElementById("search-container").innerHTML = `<div class="row">
         <div class="searchWidth col-sm-12 col-md-6 mb-3">
             <input type="text" id="searchByName" class="form-control bg-transparent text-white w-100 text-center" placeholder="Search By Name...">
@@ -438,24 +440,27 @@ $(".nav-tab-menu li a").click(function (e) {
                 this.value = this.value.slice(0, 1);
         });
         
-    
+        
 
     }
     (async function() {
         let x;
         if (listBy == "categories") {
+            document.getElementById("search-container").innerHTML ="";
             $(".loading-container").fadeIn(100)
             x = await getCategoriesApi(listBy + ".php")
             arr = x.categories.splice(0, 20);
             displayCategories()
             $(".loading-container").fadeOut(500)
         } else if (listBy == "a") {
+            document.getElementById("search-container").innerHTML ="";
             $(".loading-container").fadeIn(100)
             x = await getCategoriesApi("list.php?a=list")
             arr = x.meals.splice(0, 20);
             displayArea()
             $(".loading-container").fadeOut(500)
         } else if (listBy == "i") {
+            document.getElementById("search-container").innerHTML ="";
             $(".loading-container").fadeIn(100)
             x = await getCategoriesApi("list.php?i=list")
             arr = x.meals.splice(0, 20);
